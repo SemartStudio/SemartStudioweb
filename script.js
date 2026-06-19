@@ -291,65 +291,162 @@ if (autoFlow) {
    ============================================================ */
 
 const botKB = [
+  /* ---- SALUDOS ---- */
   {
-    match: /^(hola|hey|buenos|buenas|ola|hi|hello|qué tal|que tal|saludos)(\s.*)?$/i,
-    reply: `¡Hola! 👋 Soy el asistente de Semart Studio.\n\nPuedo ayudarte con información sobre servicios, precios y cómo podemos hacer crecer tu negocio. ¿Por dónde empezamos?`
+    match: /^(hola|hey|buenos|buenas|ola|hi|hello|qué tal|que tal|saludos|buenas tardes|buenos días|buenas noches)(\s.*)?$/i,
+    reply: `¡Hola! 👋\n\n¿En qué te puedo ayudar? Cuéntame un poco de tu negocio y te digo qué tiene más sentido para tu caso.`
+  },
+
+  /* ---- NO SÉ QUÉ NECESITO / CONFUSIÓN (PRIORIDAD ALTA) ---- */
+  {
+    match: /no sé|no sabría|no se qué|no se que|no tengo claro|qué me conviene|que me conviene|cuál me viene|cual me viene|qué elegir|que elegir|por dónde empiezo|por donde empiezo|qué me recomiendas|que me recomiendas|no sé cuál|no se cual|qué necesito|que necesito/i,
+    reply: `Eso es exactamente lo más habitual — casi nadie sabe por dónde empezar, y tiene todo el sentido.\n\nAntes de decirte nada, cuéntame: ¿tienes web ahora mismo? ¿Y cómo llegan la mayoría de tus clientes hoy — te buscan en Google, te recomiendan, redes sociales?\n\nCon eso ya puedo decirte qué cambiaría más la cosa para tu negocio.`
+  },
+
+  /* ---- NEGOCIOS ESPECÍFICOS + INCERTIDUMBRE ---- */
+  {
+    match: /(fisio|fisioterapia|fisioterapeuta|osteopata|osteopatía)/i,
+    reply: `Una clínica de fisio tiene mucho margen para crecer online, la mayoría no lo están aprovechando bien.\n\nCasi todos los pacientes nuevos buscan "fisioterapeuta + ciudad" antes de llamar. Si no apareces o tu web no transmite confianza, se van al siguiente resultado sin pensárselo.\n\nLo que más impacto suele tener en vuestro sector:\n→ Web optimizada para Google con reserva online integrada\n→ Recordatorios automáticos 24h antes (las cancelaciones de última hora son el gran problema)\n\n¿Tienes web ahora mismo? ¿Y cuánto os afectan las cancelaciones tardías?`
   },
   {
-    match: /precio|cuánto|cuanto|coste|presupuest|cuota|tarifa|pagar|cobr|vale\?|cuest/i,
-    reply: `Nuestros precios orientativos son:\n\n💻 Web Profesional — desde 450€ (único) o 80€/mes\n⚡ Automatizaciones — desde 150€/mes\n🤖 Chatbot IA — desde 250€/mes\n🚀 Pack Completo — desde 2.500€ o 300€/mes\n\nSiempre hacemos un presupuesto adaptado a tu negocio antes de empezar. ¿Quieres una consulta gratuita sin compromiso?`
+    match: /(clínica|clinica|médico|medico|consulta médica|consulta medica|dentista|dental|odontolog)/i,
+    reply: `Para una clínica lo más importante suele ser la captación de pacientes nuevos + reducir cancelaciones, que en este sector duelen mucho.\n\nLo primero que miramos siempre: ¿aparecéis en Google cuando alguien busca vuestro servicio en vuestra ciudad? Mucha gente busca antes de llamar, y si no estáis en los primeros resultados, directamente no existís para ese potencial paciente.\n\n¿Tenéis web ahora? ¿Y cómo conseguís la mayoría de pacientes nuevos actualmente?`
   },
   {
-    match: /web|pág|diseño web|website|página|pagina web/i,
-    reply: `Nuestra Web Profesional incluye:\n\n✓ Diseño único a medida (sin plantillas)\n✓ Optimizada para aparecer en Google\n✓ Perfecta en móvil y ordenador\n✓ Botón WhatsApp siempre visible\n✓ Sistema de reservas integrado\n✓ Google Maps + reseñas integradas\n✓ Lista en 2–4 semanas\n\n¿Para qué tipo de negocio la necesitas?`
+    match: /(peluquer|barbería|barberia|estética|estetica|nail|uñas|depilac|belleza)/i,
+    reply: `Los centros de belleza y peluquerías son los negocios que más se benefician de la automatización — porque el tiempo al teléfono tomando citas es un problema real.\n\nLo más habitual: recordatorio automático 24h antes, las cancelas de último momento caen un 60%. Y que los clientes puedan reservar solos desde el móvil a las 11 de la noche, que es cuando más se acuerdan.\n\n¿Cuánto tiempo calculas que se pierde a la semana solo con el tema de citas?`
   },
   {
-    match: /automatiz|reserva|cita|recordatorio|whatsapp business|confirmaci/i,
-    reply: `Las automatizaciones trabajan por ti 24h:\n\n⚡ Confirmación automática al instante al reservar\n⚡ Recordatorio 24h antes (reduce cancelaciones un 60%)\n⚡ Seguimiento de clientes que no confirmaron\n⚡ Solicitud de reseña automática tras la visita\n⚡ Reactivación de clientes inactivos\n\nTodo funciona sin que tengas que hacer nada. ¿Para qué sector es?`
+    match: /(restaurante|bar |cafetería|cafeteria|hostelería|hosteleria|comida|gastro|carta|menú)/i,
+    reply: `Un restaurante tiene mucho que ganar online, especialmente si dependéis de reservas.\n\nLo más urgente: ¿aparecéis en Google Maps con fotos actualizadas y buenas reseñas? Ese es el primer filtro que usa la gente para elegir dónde comer. Si no tenéis eso bien trabajado, estáis perdiendo clientes que ya os querían elegir.\n\nDepués vendría la web con carta online y sistema de reservas. ¿Cómo está vuestra situación ahora mismo en Google?`
   },
   {
-    match: /chatbot|bot|asistente virtual|inteligencia artificial|ia|24h|24 hora/i,
-    reply: `El Chatbot IA es como tener un empleado 24h:\n\n✓ Responde preguntas al instante (precios, horarios, servicios)\n✓ Agenda citas sin intervención humana\n✓ Funciona en tu web, WhatsApp e Instagram\n✓ Entrenado con los datos REALES de tu negocio\n✓ Disponible 24h, 7 días a la semana\n\nEste mismo chat que estás usando ahora es un ejemplo de cómo funcionaría el tuyo. ¿Te interesa?`
+    match: /(gimnasio|gym |fitness|pilates|yoga|crossfit|entrenamiento|personal trainer)/i,
+    reply: `Para un gimnasio o centro deportivo, hay dos cosas que más impacto tienen: conseguir socios nuevos en momentos clave (enero, verano) y retener a los que ya tienes.\n\nLa automatización aquí es muy potente: mensaje a quien lleva 2 semanas sin venir, oferta de renovación antes de que caduque, recordatorio de clase... todo sin que tengas que hacer nada.\n\n¿Cómo estáis gestionando las bajas ahora? ¿Y los meses de más baja afluencia?`
   },
   {
-    match: /pack|completo|todo|combo|bundle/i,
-    reply: `El Pack Completo es nuestra solución más potente:\n\n🚀 Web Profesional a medida\n🚀 Automatizaciones IA (reservas, recordatorios, reseñas)\n🚀 Chatbot IA 24h integrado\n🚀 Soporte prioritario directo con Sergio\n\nDesde 2.500€ (único) o 300€/mes. Es lo que más negocios eligen porque todo está integrado desde el primer día. ¿Hablamos?`
+    match: /(academia|clases|formación|formacion|curso|escuela)/i,
+    reply: `Una academia tiene un ciclo muy marcado — septiembre y enero son los momentos de captar alumnos, y el resto del año es retener y llenar bajas.\n\nLo que más funciona: una web que aparezca en Google cuando busquen "academia de [materia] en [ciudad]" + un sistema que recuerde a los alumnos sus clases y automatice las inscripciones.\n\n¿Qué asignaturas o cursos dais? Y, ¿tenéis web ahora mismo?`
   },
   {
-    match: /tiempo|plazo|tarda|cuando|cuándo|cuanto tiempo|entrega|semana/i,
-    reply: `Los plazos habituales son:\n\n📅 Web Profesional: 2–4 semanas\n📅 Automatizaciones: 1–2 semanas\n📅 Chatbot IA: 1–2 semanas\n📅 Pack Completo: 3–5 semanas\n\nEn cada fase recibes avances para revisar y aprobar. Nada se publica sin tu visto bueno.`
+    match: /(taller|mecánico|mecanico|reparación|reparacion|chapista|pintura de coche)/i,
+    reply: `Un taller tiene una ventaja enorme: los clientes buscan específicamente "taller mecánico + [ciudad]" cuando tienen un problema, y el que aparece primero en Google se lleva la llamada.\n\nEl combo que más funciona para talleres: presencia en Google bien optimizada + web que transmita profesionalidad + botón de WhatsApp bien visible para pedir presupuesto directo.\n\n¿Cómo consigues la mayoría de clientes ahora — recomendación, Google, o de toda la vida?`
   },
   {
-    match: /sergio|quién|quien|fundador|sobre|equipo|quien eres/i,
-    reply: `Hola, soy Sergio Martínez, fundador de Semart Studio 👋\n\nVengo del mundo de la hostelería y la logística. Sé lo que es un negocio real — con clientes, urgencias y márgenes ajustados.\n\nMi enfoque: primero entiendo tu negocio, luego busco la solución que más sentido tiene para ti. Sin tecnicismos ni sorpresas.`
+    match: /(inmobiliaria|inmueble|alquiler|pisos|casas|propiedades|agente inmobiliario)/i,
+    reply: `En inmobiliaria la web es el activo principal — es donde la gente ve los inmuebles y decide si os llama.\n\nLo importante no es solo que sea bonita, sino que aparezca cuando busquen en Google y que facilite el contacto inmediato. La mayoría de leads se pierden porque la gente tiene que esforzarse para encontrar el botón de contacto.\n\n¿Tenéis web ahora? ¿Y cómo está vuestro posicionamiento en Google para búsquedas locales?`
   },
   {
-    match: /cancel|permanencia|contrato|obligat|salir|baja|vincul/i,
-    reply: `Sin permanencias. Sin contratos de larga duración.\n\nPuedes cancelar el mantenimiento cuando quieras con solo avisarme. Tu web y tus automatizaciones siempre son tuyas — no dependen de nosotros para seguir funcionando.\n\nQueremos que sigas porque estás satisfecho, no por obligación.`
+    match: /(tienda|comercio|local|shop|venta)/i,
+    reply: `Para una tienda o comercio local, lo más importante es que la gente os encuentre cuando busque lo que vendéis en vuestra ciudad.\n\nLo primero: Google Business bien optimizado con fotos, horarios y reseñas actualizadas. Es gratuito y tiene un impacto enorme. Después, una web que haga de catálogo y facilite el contacto.\n\n¿Qué tipo de productos vendéis? ¿Y tenéis ya algo de presencia online?`
   },
+
+  /* ---- PRECIOS ---- */
   {
-    match: /valencia|donde|dónde|localiz|presencial|españa|ciudad|ubicaci/i,
-    reply: `Trabajamos con negocios de toda España — y también fuera — de forma 100% online.\n\nSi estás en Valencia o alrededores, también podemos colaborar presencialmente si lo prefieres. No hay límite geográfico.`
+    match: /precio|cuánto cuesta|cuanto cuesta|cuánto vale|cuanto vale|coste|presupuest|cuota|tarifa|pagar|cobr/i,
+    reply: `Te doy los rangos orientativos, aunque siempre adaptamos al negocio real:\n\n💻 Web Profesional — desde 450€ (pago único) o 80€/mes\n⚡ Automatizaciones — desde 150€/mes\n🤖 Chatbot IA — desde 250€/mes\n🚀 Pack Completo — desde 2.500€ o 300€/mes\n\nEn la llamada gratuita te doy un número exacto para tu caso. Sin compromiso y sin sorpresas después. ¿Qué presupuesto tienes más o menos en mente?`
   },
+
+  /* ---- WEB ---- */
   {
-    match: /contacto|hablar|llamada|reunión|reunion|empezar|empezamos|quiero|interesa|consulta/i,
-    reply: `Perfecto, me alegra que te interese 😊\n\nTienes tres formas de contactar:\n\n📅 Llamada gratuita (20 min) → calendly.com/semartestudio\n💬 WhatsApp directo → botón verde en la página\n📧 Email → sergio.m.r.2000@gmail.com\n\nRespondo en menos de 24h, normalmente mucho antes.`
+    match: /web|página|pagina|diseño|website/i,
+    reply: `La web que hacemos no es solo "algo bonito en internet". Está pensada para que la gente que te busque en Google llegue a ella, confíe en ti en los primeros 5 segundos y contacte directamente.\n\nIncluye diseño a medida, SEO local, reservas online, botón de WhatsApp siempre visible y reseñas de Google integradas. Lista en 2–4 semanas.\n\n¿Para qué tipo de negocio la necesitas?`
   },
+
+  /* ---- AUTOMATIZACIONES ---- */
   {
-    match: /garantía|garantia|seguro|confianza|fiable|riesgo/i,
-    reply: `Trabajamos con total transparencia:\n\n✓ Presupuesto claro antes de empezar\n✓ Sin costes ocultos ni sorpresas\n✓ Comunicación directa conmigo en todo momento\n✓ Apruebas cada fase antes de publicar\n✓ Sin permanencias obligatorias\n✓ Acompañamiento completo hasta el lanzamiento\n\nNada se publica sin tu aprobación.`
+    match: /automatiz|recordatorio|confirmaci|seguimiento|lead|cancelaci/i,
+    reply: `Las automatizaciones son básicamente: todo lo que haces repetitivamente a mano — confirmaciones, recordatorios, seguimiento — pero funcionando solo, 24h.\n\nEl impacto más concreto: las cancelaciones de última hora bajan un 60%, y dejas de perder leads porque no respondiste a tiempo.\n\n¿Qué es lo más tedioso que haces manualmente ahora mismo en el día a día?`
   },
+
+  /* ---- CHATBOT ---- */
   {
-    match: /sector|restaurante|peluquer|clinica|clínica|gimnasio|academia|taller|inmobi|comerc/i,
-    reply: `Trabajamos con todo tipo de negocios locales:\n\n🍽️ Restaurantes · 💅 Peluquerías · 🏋️ Gimnasios\n🏥 Clínicas · 🏠 Inmobiliarias · 📦 Comercios\n🔧 Reformas y construcción · 📚 Academias · 🚗 Talleres\n\n¿No ves el tuyo? Escríbeme — seguro puedo ayudarte.`
+    match: /chatbot|bot|asistente|inteligencia artificial|ia|24h|24 hora/i,
+    reply: `El chatbot es como tener alguien que atiende a tus clientes a las 3 de la madrugada si hace falta.\n\nResponde preguntas, agenda citas y captura datos de clientes potenciales — integrado en tu web, WhatsApp o Instagram. Se entrena con la información real de tu negocio, así que responde como si fuera tú.\n\nEste chat que estás usando ahora mismo es un ejemplo de cómo funciona. ¿Para qué canal lo necesitarías más — web, WhatsApp, o Instagram?`
   },
+
+  /* ---- PACK ---- */
   {
-    match: /google|seo|posicion|búsqueda|busqueda|aparecer|redes|instagram|facebook/i,
-    reply: `El posicionamiento en Google es clave para cualquier negocio local.\n\nNuestra web incluye SEO local optimizado: apareces cuando alguien busca tu servicio en tu ciudad. También configuramos tu perfil de Google Business, que multiplica tus visitas locales.\n\n¿Quieres saber cómo estás posicionado ahora mismo?`
+    match: /pack|completo|todo junto|todo en uno|combo/i,
+    reply: `El Pack Completo es web + automatizaciones + chatbot todo integrado desde el primer día.\n\nLa ventaja de hacerlo junto es que todo se conecta: la web capta al cliente, el chatbot lo atiende, y las automatizaciones hacen el seguimiento. Sin fricciones entre partes.\n\nDesde 2.500€ o 300€/mes. ¿Cuánto tiempo llevas con el negocio y en qué punto estás digitalmente ahora mismo?`
   },
+
+  /* ---- TIEMPO / PLAZO ---- */
   {
-    match: /gracias|genial|perfecto|buenísimo|interesante|bien|ok|vale/i,
-    reply: `¡Me alegra que te haya resultado útil! 😊\n\nSi tienes más preguntas o quieres dar el primer paso, escríbeme cuando quieras. Estoy para ayudarte.`
+    match: /tiempo|plazo|tarda|cuándo|cuando|cuánto tiempo|entrega|semana/i,
+    reply: `Depende del proyecto, pero los tiempos habituales:\n\n→ Web: 2–4 semanas\n→ Automatizaciones: 1–2 semanas\n→ Chatbot: 1–2 semanas\n→ Pack completo: 3–5 semanas\n\nEn cada fase te mando avances para que lo revises y lo apruebes. Nada sale sin que tú lo hayas visto primero.`
+  },
+
+  /* ---- SOBRE SERGIO ---- */
+  {
+    match: /sergio|quién eres|quien eres|fundador|sobre ti|equipo|experiencia/i,
+    reply: `Soy Sergio Martínez, tengo 24 años y llevo un tiempo trabajando en hostelería y logística antes de montar Semart Studio.\n\nEso me ayuda bastante — sé lo que es gestionar un negocio con clientes reales, con márgenes ajustados y sin tiempo para complicaciones técnicas. No vengo de una agencia, vengo del campo.\n\nMi forma de trabajar: primero entiendo bien tu negocio, y solo entonces te propongo lo que tiene más sentido. Si no creo que algo te vaya a servir, te lo digo.`
+  },
+
+  /* ---- PERMANENCIAS / CONTRATO ---- */
+  {
+    match: /cancel|permanencia|contrato|compromiso|obligat|salir|baja|vincul/i,
+    reply: `Sin permanencias, sin contratos de larga duración.\n\nSi en algún momento no te está aportando lo suficiente, cancelas y ya está. Lo que hagamos siempre es tuyo — la web, las automatizaciones, todo — y no depende de mí para seguir funcionando.\n\nQuiero que sigas conmigo porque los resultados lo merecen, no porque no tengas otra opción.`
+  },
+
+  /* ---- LOCALIZACIÓN ---- */
+  {
+    match: /valencia|dónde|donde|localiz|presencial|españa|ciudad|ubicaci/i,
+    reply: `Trabajo con negocios de toda España de forma online. Si estás en Valencia o cerca, también podemos vernos en persona si lo prefieres — pero la mayoría de proyectos los hacemos completamente a distancia sin ningún problema.\n\n¿De qué ciudad eres?`
+  },
+
+  /* ---- MALA EXPERIENCIA ANTERIOR ---- */
+  {
+    match: /antes tuve|ya probé|ya probe|no funcionó|no funciono|me salió mal|me salio mal|perdí dinero|perdi dinero|me timaron|mala experiencia/i,
+    reply: `Lo entiendo, y por desgracia es más común de lo que debería.\n\nLo que suele pasar: se entrega una web genérica que queda bonita pero sin estrategia detrás — sin SEO, sin conversión pensada, sin seguimiento. Y el cliente no ve clientes nuevos, así que concluye que "internet no funciona para mí". El problema casi nunca es internet.\n\n¿Qué fue exactamente lo que no funcionó? Cuéntame y te digo con honestidad si lo que necesitas es diferente a lo que ya probaste.`
+  },
+
+  /* ---- DESCONFIANZA / PRUEBAS ---- */
+  {
+    match: /funciona de verdad|seguro que funciona|me lo demuestras|prueba|demostración|casos|ejemplos/i,
+    reply: `Es la pregunta que me parece más honesta y respetable.\n\nSemart Studio es un proyecto reciente, así que no tengo cartera de clientes de 10 años que enseñarte. Lo que sí tengo es un enfoque muy directo: te digo lo que creo que puede funcionar para tu caso, y si no lo veo claro, te lo digo antes de cobrarte nada.\n\nLo más práctico: una llamada de 20 minutos donde te cuento exactamente qué haría para tu negocio y qué esperar. Sin compromiso. Así juzgas tú si tiene sentido.`
+  },
+
+  /* ---- CARO / PRESUPUESTO BAJO ---- */
+  {
+    match: /caro|demasiado|mucho dinero|no me llega|no tengo tanto|presupuesto bajo|ajustado|poco presupuesto/i,
+    reply: `Te entiendo, y no voy a insistir en nada que no tenga sentido para ti.\n\nLo que sí te digo: hay opciones para distintos momentos. Empezar solo con una web bien hecha (desde 450€) ya marca una diferencia real si ahora mismo no tienes presencia online.\n\n¿Cuánto aproximadamente podrías invertir? Con eso te cuento qué tiene sentido hacer ahora y qué dejar para más adelante.`
+  },
+
+  /* ---- POR QUÉ SEMART ---- */
+  {
+    match: /diferenci|por qué vosotros|por qué tú|competencia|otras agencias|otras opciones|freelance|más barato/i,
+    reply: `Seré directo: no somos los más baratos ni los más grandes.\n\nLo que sí ofrezco es que hablas conmigo directamente en todo momento — no con un account manager que te pasa mensajes —, y que entiendo los negocios locales desde dentro porque he estado en ese lado.\n\nNo vendo paquetes estándar. Cada proyecto lo pienso desde cero para ese negocio concreto. Si eso te parece valioso, hablamos. Si buscas el precio más bajo, probablemente hay opciones más baratas.`
+  },
+
+  /* ---- PROCESO ---- */
+  {
+    match: /cómo funciona|como funciona|el proceso|qué pasos|que pasos|cómo empezamos|como empezamos/i,
+    reply: `Sencillo:\n\n1️⃣ Llamada de 20 min (gratis) — me cuentas tu negocio y tus objetivos\n2️⃣ Propuesta a medida — plan claro con precio real, sin letra pequeña\n3️⃣ Desarrollo — me encargo de todo, tú revisas y apruebas cada fase\n4️⃣ Lanzamiento — activo y funcionando, con acompañamiento incluido\n\n¿Quieres que empecemos?`
+  },
+
+  /* ---- GOOGLE / SEO ---- */
+  {
+    match: /google|seo|posicion|aparecer|búsqueda|busqueda|reseñas|maps/i,
+    reply: `El SEO local es lo que hace que la gente te encuentre cuando busca lo que ofreces en tu ciudad.\n\nEn la web que hacemos siempre va incluido: estructura optimizada, meta etiquetas, velocidad de carga, y configuración del perfil de Google Business. Sin eso, la web es un escaparate que nadie ve.\n\n¿Sabes ahora mismo en qué posición apareces si buscas tu servicio en Google?`
+  },
+
+  /* ---- CONTACTO ---- */
+  {
+    match: /contacto|llamada|reunión|reunion|empezar|hablar|consulta/i,
+    reply: `Perfecto, lo más rápido es la llamada gratuita — 20 minutos y te digo exactamente qué tiene más sentido para tu caso.\n\nResérvala en: calendly.com/semartestudio\n\nO si prefieres ir más directo, el WhatsApp (botón verde en la página) suele ser lo más rápido. Respondo el mismo día.`
+  },
+
+  /* ---- GARANTÍAS ---- */
+  {
+    match: /garantía|garantia|confianza|seguro|riesgo|fiable/i,
+    reply: `Trabajo con total transparencia:\n\n→ Presupuesto claro antes de empezar, sin cifras que cambian a mitad\n→ Sin costes ocultos\n→ Tú apruebas cada fase antes de publicar\n→ Sin permanencias — cancelas cuando quieras\n→ Lo que hagamos es siempre tuyo\n\nY si en algún momento no estás conforme con el trabajo, lo hablamos. Sin dramas.`
+  },
+
+  /* ---- GRACIAS / OK ---- */
+  {
+    match: /gracias|genial|perfecto|muy bien|ok|vale|👍|entendido/i,
+    reply: `De nada 😊 Si en algún momento tienes más dudas o quieres dar el paso, aquí estoy. Lo más útil siempre es una llamada de 20 minutos — suele aclarar más que cualquier chat.`
   },
 ];
 
