@@ -1541,6 +1541,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 768px) {
+  /* Hide text label next to logo on mobile to avoid overlap with hamburger */
+  .nav-logo-label { display: none !important; }
   .nav-links {
     display: none;
     position: fixed;
@@ -1585,6 +1587,82 @@ a { text-decoration: none; color: inherit; }
   .demos-grid { max-width: 100%; }
   .garantias-grid { grid-template-columns: 1fr; }
   .pack-card { padding: 28px 20px; }
+  /* Fachada images less zoomed on small screens */
+  .hero-bg-img { object-position: 30% center; }
+  .cta-bg-img img { object-position: center center; }
+}
+
+/* ===== SWIPE HINT ===== */
+.swipe-hint-wrap {
+  display: none;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.swipe-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dim);
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: swipeAnim 1.8s ease-in-out infinite;
+}
+.swipe-hint svg { opacity: 0.6; flex-shrink: 0; }
+@keyframes swipeAnim {
+  0%,100% { opacity: 0.5; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(3px); }
+}
+
+/* ===== MOBILE HORIZONTAL CAROUSEL (services + pricing) ===== */
+@media (max-width: 768px) {
+  .swipe-hint-wrap { display: flex; }
+
+  /* Services carousel */
+  .services-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px !important;
+    padding: 4px 20px 20px !important;
+    margin: 0 -20px !important;
+    max-width: none !important;
+    grid-template-columns: unset !important;
+    scrollbar-width: none;
+  }
+  .services-carousel::-webkit-scrollbar { display: none; }
+  .services-carousel .svc-card {
+    flex: 0 0 82vw;
+    min-width: 82vw;
+    scroll-snap-align: start;
+  }
+
+  /* Pricing carousel */
+  .pricing-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px !important;
+    padding: 4px 20px 20px !important;
+    margin: 0 -20px !important;
+    max-width: none !important;
+    grid-template-columns: unset !important;
+    scrollbar-width: none;
+  }
+  .pricing-carousel::-webkit-scrollbar { display: none; }
+  .pricing-carousel .price-card {
+    flex: 0 0 82vw;
+    min-width: 82vw;
+    scroll-snap-align: start;
+  }
 }
 
 /* ===== BROWSER MOCKUP V2 ===== */
@@ -1853,12 +1931,14 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+  pointer-events: none; /* wrapper never blocks clicks */
 }
 .bot-trigger {
   width: 58px; height: 58px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--cyan) 0%, #007ACC 100%);
   border: none;
+  pointer-events: auto; /* always clickable */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1926,7 +2006,7 @@ a { text-decoration: none; color: inherit; }
 .bot-window.open {
   opacity: 1;
   transform: translateY(0) scale(1);
-  pointer-events: all;
+  pointer-events: all; /* only active when chat is open */
 }
 .bot-win-head {
   background: linear-gradient(135deg, #001D26 0%, #00121A 100%);
