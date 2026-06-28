@@ -359,10 +359,34 @@ const botKB = [
     reply: `Para una tienda o comercio local, lo más importante es que la gente os encuentre cuando busque lo que vendéis en vuestra ciudad.\n\nLo primero: Google Business bien optimizado con fotos, horarios y reseñas actualizadas. Es gratuito y tiene un impacto enorme. Después, una web que haga de catálogo y facilite el contacto.\n\n¿Qué tipo de productos vendéis? ¿Y tenéis ya algo de presencia online?`
   },
 
-  /* ---- PRECIOS ---- */
+  /* ---- PRECIO ÚNICO: automatizaciones o chatbot (específico) ---- */
+  {
+    match: /(precio|coste|cuánto|cuanto).*(único|unico|una vez|de golpe|sin mensual).*(automatiz|chatbot|bot)|(automatiz|chatbot|bot).*(precio|coste|cuánto|cuanto).*(único|unico|una vez|de golpe)/i,
+    reply: `Las automatizaciones y el chatbot no van en pago único — son servicios vivos que mantenemos activos, ajustamos y actualizamos según cambia tu negocio. Pagar de golpe no tendría mucho sentido porque el valor está en que siempre estén ahí funcionando.\n\nDicho esto, el coste mensual es bastante asequible:\n→ Automatizaciones: desde 150€/mes\n→ Chatbot IA: desde 250€/mes\n\nY si en algún momento decides parar, lo paras. Sin compromiso. ¿Cuánto tenías pensado invertir al mes, más o menos?`
+  },
+
+  /* ---- PRECIO WEB (específico) ---- */
+  {
+    match: /(precio|cuánto|cuanto|coste|vale).*(web|página|pagina|website)|(web|página|pagina|website).*(precio|cuánto|cuanto|coste|vale)/i,
+    reply: `La web es pago único — la diseñamos, la lanzamos y es tuya para siempre, sin que dependas de mí para que funcione.\n\nEl precio empieza en 450€. Qué lleva exactamente depende de tu negocio: no es lo mismo una web para una peluquería que para una clínica con reservas online integradas.\n\nTambién hay opción de cuota mensual (desde 80€/mes) si prefieres no pagarlo todo de golpe. ¿Qué tipo de negocio tienes?`
+  },
+
+  /* ---- PRECIO AUTOMATIZACIONES (específico) ---- */
+  {
+    match: /(precio|cuánto|cuanto|coste).*(automatiz)|(automatiz).*(precio|cuánto|cuanto|coste)/i,
+    reply: `Las automatizaciones van en mensual — desde 150€/mes. ¿Por qué mensual? Porque las configuramos, las monitorizamos y las ajustamos cuando algo cambia en tu negocio. No es algo que se instala y se olvida.\n\nLo que más valoran los clientes: dejan de perder tiempo en tareas repetitivas y las cancelaciones de última hora bajan notablemente. El ROI suele verse bastante rápido.\n\n¿Qué es lo más tedioso que haces manualmente ahora mismo?`
+  },
+
+  /* ---- PRECIO CHATBOT (específico) ---- */
+  {
+    match: /(precio|cuánto|cuanto|coste).*(chatbot|bot|asistente)|(chatbot|bot|asistente).*(precio|cuánto|cuanto|coste)/i,
+    reply: `El chatbot va desde 250€/mes. Incluye el entrenamiento con la información de tu negocio, la integración en web o WhatsApp, y el mantenimiento.\n\nNo es un bot de respuestas enlatadas — lo entrenamos con tus preguntas reales para que responda como lo harías tú. Este que estás usando ahora mismo es un ejemplo de cómo queda.\n\n¿Para qué canal lo necesitarías — web, WhatsApp, o Instagram?`
+  },
+
+  /* ---- PRECIOS (genérico) ---- */
   {
     match: /precio|cuánto cuesta|cuanto cuesta|cuánto vale|cuanto vale|coste|presupuest|cuota|tarifa|pagar|cobr/i,
-    reply: `Te doy los rangos orientativos, aunque siempre adaptamos al negocio real:\n\n💻 Web Profesional — desde 450€ (pago único) o 80€/mes\n⚡ Automatizaciones — desde 150€/mes\n🤖 Chatbot IA — desde 250€/mes\n🚀 Pack Completo — desde 2.500€ o 300€/mes\n\nEn la llamada gratuita te doy un número exacto para tu caso. Sin compromiso y sin sorpresas después. ¿Qué presupuesto tienes más o menos en mente?`
+    reply: `Depende de qué necesitas exactamente — que es lo que todavía no sé.\n\nA grandes rasgos:\n💻 Web: desde 450€ único o 80€/mes\n⚡ Automatizaciones: desde 150€/mes\n🤖 Chatbot: desde 250€/mes\n🚀 Pack completo: desde 2.500€ o 300€/mes\n\nPero estos son rangos orientativos. El número real depende de tu negocio, lo que tienes ahora y lo que quieres conseguir. ¿Qué te interesa más?`
   },
 
   /* ---- WEB ---- */
