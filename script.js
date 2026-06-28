@@ -2,6 +2,18 @@
    SEMART STUDIO — JS 3.0
    ============================================ */
 
+/* ----- WHATSAPP MOBILE FIX ----- */
+/* On mobile, remove target="_blank" so the OS can redirect to the WhatsApp app.
+   With target="_blank" the browser opens a new tab first and blocks the app handoff. */
+(function() {
+  var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (!isMobile) return;
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+    link.removeAttribute('target');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+})();
+
 /* ----- CURSOR GLOW — efecto ambiente decorativo ----- */
 const cursor = document.getElementById('cursorGlow');
 let mouseX = 0, mouseY = 0, curX = 0, curY = 0;

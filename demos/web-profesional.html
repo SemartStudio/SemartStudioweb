@@ -538,6 +538,15 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
       }, { threshold: 0.1 }).observe(el);
     });
+
+    (function() {
+      var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!isMobile) return;
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+        link.removeAttribute('target');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
   </script>
 </body>
 </html>

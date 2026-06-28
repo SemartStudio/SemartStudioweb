@@ -1480,7 +1480,7 @@ a { text-decoration: none; color: inherit; }
 .wa-float {
   position: fixed;
   bottom: 28px; right: 28px;
-  z-index: 999;
+  z-index: 9998;
   width: 58px; height: 58px;
   background: #25D366;
   border-radius: 50%;
@@ -1488,6 +1488,8 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 20px rgba(37,211,102,0.4);
   transition: var(--t);
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
 .wa-tooltip {
