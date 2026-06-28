@@ -389,9 +389,15 @@ const botKB = [
     reply: `El Pack Completo es web + automatizaciones + chatbot todo integrado desde el primer día.\n\nLa ventaja de hacerlo junto es que todo se conecta: la web capta al cliente, el chatbot lo atiende, y las automatizaciones hacen el seguimiento. Sin fricciones entre partes.\n\nDesde 2.500€ o 300€/mes. ¿Cuánto tiempo llevas con el negocio y en qué punto estás digitalmente ahora mismo?`
   },
 
+  /* ---- PERMANENCIAS / CONTRATO ---- */
+  {
+    match: /cancel|permanencia|contrato|compromiso|obligat|salir|baja|vincul|cuando quiera|sin ataduras/i,
+    reply: `Sin permanencias, sin contratos de larga duración.\n\nSi en algún momento no te está aportando lo suficiente, cancelas y ya está. Lo que hagamos siempre es tuyo — la web, las automatizaciones, todo — y no depende de mí para seguir funcionando.\n\nQuiero que sigas conmigo porque los resultados lo merecen, no porque no tengas otra opción.`
+  },
+
   /* ---- TIEMPO / PLAZO ---- */
   {
-    match: /tiempo|plazo|tarda|cuándo|cuando|cuánto tiempo|entrega|semana/i,
+    match: /cuánto tarda|cuánto tiempo|plazo|tarda|cuándo estará|cuándo termina|cuándo entrega|tiempo de entrega|semanas tarda/i,
     reply: `Depende del proyecto, pero los tiempos habituales:\n\n→ Web: 2–4 semanas\n→ Automatizaciones: 1–2 semanas\n→ Chatbot: 1–2 semanas\n→ Pack completo: 3–5 semanas\n\nEn cada fase te mando avances para que lo revises y lo apruebes. Nada sale sin que tú lo hayas visto primero.`
   },
 
@@ -399,12 +405,6 @@ const botKB = [
   {
     match: /sergio|quién eres|quien eres|fundador|sobre ti|equipo|experiencia/i,
     reply: `Soy Sergio Martínez, tengo 24 años y llevo un tiempo trabajando en hostelería y logística antes de montar Semart Studio.\n\nEso me ayuda bastante — sé lo que es gestionar un negocio con clientes reales, con márgenes ajustados y sin tiempo para complicaciones técnicas. No vengo de una agencia, vengo del campo.\n\nMi forma de trabajar: primero entiendo bien tu negocio, y solo entonces te propongo lo que tiene más sentido. Si no creo que algo te vaya a servir, te lo digo.`
-  },
-
-  /* ---- PERMANENCIAS / CONTRATO ---- */
-  {
-    match: /cancel|permanencia|contrato|compromiso|obligat|salir|baja|vincul/i,
-    reply: `Sin permanencias, sin contratos de larga duración.\n\nSi en algún momento no te está aportando lo suficiente, cancelas y ya está. Lo que hagamos siempre es tuyo — la web, las automatizaciones, todo — y no depende de mí para seguir funcionando.\n\nQuiero que sigas conmigo porque los resultados lo merecen, no porque no tengas otra opción.`
   },
 
   /* ---- LOCALIZACIÓN ---- */
