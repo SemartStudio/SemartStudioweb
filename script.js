@@ -368,7 +368,7 @@ const botKB = [
   /* ---- PRECIO WEB (específico) ---- */
   {
     match: /(precio|cuánto|cuanto|coste|vale).*(web|página|pagina|website)|(web|página|pagina|website).*(precio|cuánto|cuanto|coste|vale)/i,
-    reply: `La web es pago único — la diseñamos, la lanzamos y es tuya para siempre, sin que dependas de mí para que funcione.\n\nEl precio empieza en 450€. Qué lleva exactamente depende de tu negocio: no es lo mismo una web para una peluquería que para una clínica con reservas online integradas.\n\nTambién hay opción de cuota mensual (desde 80€/mes) si prefieres no pagarlo todo de golpe. ¿Qué tipo de negocio tienes?`
+    reply: `La web es pago único desde 450€ — la diseñamos, la lanzamos y es tuya para siempre.\n\nLo que lleva exactamente depende de tu negocio: no es lo mismo una web para una peluquería que para una clínica con reservas online, acceso a historial de pacientes o múltiples ubicaciones.\n\nSi luego quieres que me encargue yo del mantenimiento y actualizaciones, eso va aparte en una cuota mensual pequeña (desde 80€/mes), pero es opcional. ¿Qué tipo de negocio tienes?`
   },
 
   /* ---- PRECIO AUTOMATIZACIONES (específico) ---- */
@@ -387,6 +387,12 @@ const botKB = [
   {
     match: /precio|cuánto cuesta|cuanto cuesta|cuánto vale|cuanto vale|coste|presupuest|cuota|tarifa|pagar|cobr/i,
     reply: `Depende de qué necesitas exactamente — que es lo que todavía no sé.\n\nA grandes rasgos:\n💻 Web: desde 450€ único o 80€/mes\n⚡ Automatizaciones: desde 150€/mes\n🤖 Chatbot: desde 250€/mes\n🚀 Pack completo: desde 2.500€ o 300€/mes\n\nPero estos son rangos orientativos. El número real depende de tu negocio, lo que tienes ahora y lo que quieres conseguir. ¿Qué te interesa más?`
+  },
+
+  /* ---- YA TIENE WEB ---- */
+  {
+    match: /s[íi] tengo web|ya tengo web|tengo (una |mi )?web|tengo página|tengo pagina|ya ten[íi]a web|sí, tengo|si, tengo/i,
+    reply: `Bien, eso es un punto de partida. ¿Y te está trayendo clientes o es más de cara al escaparate?\n\nLa mayoría de negocios con web me dicen lo mismo: "tengo web pero no me llaman por ahí". Casi siempre el problema no es la web en sí — es que no aparece cuando alguien busca tu servicio en Google, o llega gente pero algo hace que no acabe contactando.\n\n¿Cuándo fue la última vez que te llegó un cliente nuevo gracias a la web?`
   },
 
   /* ---- WEB ---- */
